@@ -1,2 +1,2 @@
-# basic-auth
-basic working authentication server
+# Basic Authentication Server
+
