@@ -7,7 +7,6 @@ const express = require('express');
 const app = express();
 
 // Import modules
-const { sequelize } = require('../auth/model/index');
 const signinAuthRouter = require('../auth/routes/signin');
 const signupAuthRouter = require('../auth/routes/signup');
 
@@ -18,14 +17,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Process auth routers
-app.use(signupAuthRouter);
 app.use(signinAuthRouter);
+app.use(signupAuthRouter);
+
 
 // make sure our tables are created, start up the HTTP server.
 module.exports = {
   app,
-  start: () => sequelize.sync()
-    .then((PORT) => app.listen(PORT, () => console.log(`Server listening on port ${PORT}`)))
-    .catch(error => console.error('Could not start server', error.message)),
+  start: (PORT) => app.listen(PORT, () => console.log(`Server listening on port ${PORT}`)),
 };
 
