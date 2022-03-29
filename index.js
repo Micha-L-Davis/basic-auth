@@ -2,6 +2,9 @@
 
 require('dotenv');
 const app = require('./src/app');
+const { sequelize } = require('./auth/model/index');
 const PORT = process.env.PORT || 3000;
 
-app.start(PORT);
+sequelize.sync()
+  .then(app.start(PORT))
+  .catch(error => console.error('Could not start server', error.message));
