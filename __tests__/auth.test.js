@@ -32,7 +32,6 @@ describe('testing our auth features', () => {
     let encodedString = base64.encode(authString);
     let response = await request.post('/signin').set('Authorization', `Basic ${encodedString}`);
 
-    console.log(response.error);
     expect(response.status).toEqual(201);
     expect(response.body.username).toEqual('micha');
   });
