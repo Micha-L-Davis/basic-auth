@@ -2,7 +2,7 @@
 
 Deployed Site: https://basic-authentication-server.herokuapp.com/ 
 
-Latest Pull Request: https://github.com/Micha-L-Davis/api-server/pull/1
+Latest Pull Request: https://github.com/Micha-L-Davis/basic-auth/pull/2
 
 ![UML Diagram](./assets/uml.png)
 
