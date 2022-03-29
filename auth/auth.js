@@ -1,7 +1,7 @@
 'use strict';
 
 const base64 = require('base-64');
-const Users = require('./model/user.schema');
+const { UserModel } = require('./model/index');
 
 async function authenticate(req, res, next) {
 
@@ -19,7 +19,7 @@ async function authenticate(req, res, next) {
   let encodedString = basicHeaderParts.pop();  // sdkjdsljd=
   let decodedString = base64.decode(encodedString); // "username:password"
   let [username, password] = decodedString.split(':'); // username, password
-
+  //console.log(username, password);
   /*
     Now that we finally have username and password, let's see if it's valid
     1. Find the user in the database by username
@@ -28,7 +28,7 @@ async function authenticate(req, res, next) {
     3. Either we're valid or we throw an error
   */
   try {
-    let validUser = await Users.authenticateBasic(username, password);
+    let validUser = await UserModel.authenticateBasic(username, password);
     if (validUser) {
       //res.status(200).json(validUser);
       req.user = validUser;
